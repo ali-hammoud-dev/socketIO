@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Socket.IO Chat</title>
+</head>
+<body>
+  <h1>Client to Server</h1>
+  <input id="message" type="text">
+  <button onclick="sendMessageToServer()">Send to Server</button>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+  <script src="{{ url_for('static', filename='client.js') }}"></script>
+</body>
+</html>
