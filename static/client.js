@@ -47,6 +47,13 @@ private_socket.on('room_message',function(msg){
     alert(msg)
 })
 
+
+function leave_room(){
+    var room = document.getElementById('room-to-join').value;
+    var username = document.getElementById('user_roomname').value;
+    private_socket.emit('leave_the_room',{'room':room,'username':username})
+}
+
 // socket_messages.on('from flask',function(msg){
 //     alert(msg)
 // });
