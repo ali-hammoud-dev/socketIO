@@ -36,6 +36,17 @@ private_socket.on('new_private_message',function(msg){
     alert(msg)
 })
 
+
+function join_room(){
+    var room = document.getElementById('room-to-join').value;
+    var username = document.getElementById('user_roomname').value;
+    private_socket.emit('join_room',{'room':room,'username':username})
+}
+
+private_socket.on('room_message',function(msg){
+    alert(msg)
+})
+
 // socket_messages.on('from flask',function(msg){
 //     alert(msg)
 // });

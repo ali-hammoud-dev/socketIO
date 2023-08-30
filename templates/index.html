@@ -2,19 +2,37 @@
 <html>
 <head>
   <title>Socket.IO Chat</title>
+  <!-- Add the Bootstrap CSS link -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
-<body>
+<body class="container">
 
-  <input id="message" type="text">
-  <button onclick="sendMessageToServer()">Send to Server</button>
+  <div class="mb-3">
+    <input id="message" class="form-control" type="text" placeholder="Message">
+    <button class="btn btn-primary" onclick="sendMessageToServer()">Send to Server</button>
+  </div>
 
+  <div class="mb-3">
+    <input id="username" class="form-control" type="text" placeholder="Username">
+    <button class="btn btn-primary" onclick="sendUsername()">Send Username</button>
+  </div>
 
-  <input id="username" type="text">
-  <button onclick="sendUsername()">Send Username</button>
+  <div class="mb-3">
+    <input id="send_to_username" class="form-control" type="text" placeholder="Recipient Username">
+    <input id="private_message" class="form-control" type="text" placeholder="Private Message">
+    <button class="btn btn-primary" onclick="sendPrivateMessage()">Send</button>
+  </div>
 
-  Send To:   <input id="send_to_username" type="text">
-  Message:   <input id="private_message" type="text">
-  <button onclick="sendPrivateMessage()">Send</button>
+  <div class="mb-3">
+    <input id="room-to-join" class="form-control" type="text" placeholder="Room to Join">
+    <button class="btn btn-primary" onclick="join_room()">Join Room</button>
+    <input id="user_roomname" class="form-control" type="text" placeholder="User Name">
+  </div>
+
+  <!-- Add the Bootstrap JS scripts (optional) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <script src="{{ url_for('static', filename='client.js') }}"></script>
