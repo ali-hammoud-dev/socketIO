@@ -12,6 +12,10 @@
   <input id="username" type="text">
   <button onclick="sendUsername()">Send Username</button>
 
+  Send To:   <input id="send_to_username" type="text">
+  Message:   <input id="private_message" type="text">
+  <button onclick="sendPrivateMessage()">Send</button>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
   <script src="{{ url_for('static', filename='client.js') }}"></script>
 </body>

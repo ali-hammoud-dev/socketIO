@@ -7,7 +7,7 @@ app.config['DEBUG'] = True
 
 socketio = SocketIO(app)
 
-users = []
+users = {}
 
 @app.route('/')
 def index():
@@ -31,14 +31,22 @@ def orginate():
 
 @socketio.on('message from user',namespace='/messages')
 def receive_message_from_user(message):
-    print('USER MESSAGE: {} with session id : {}'.format(message,request.sid))
+    print('USER MESSAGE: {} '.format(message))
     emit('from flask',message.upper(),broadcast=True)
 
 
 @socketio.on('username',namespace='/private')
 def receive_username(username):
-    users.append({username:request.sid})
-    print(users)
+    users[username] = request.sid
+    print('username Added')
+
+
+@socketio.on('private-message',namespace='/private')
+def private_message(payload):
+    receipt_session_id = users[payload['username']]
+    message = payload['message']
+
+    emit('new_private_message',message,room=receipt_session_id)
 
 if __name__ == '__main__':
     socketio.run(app)

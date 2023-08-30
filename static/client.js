@@ -27,10 +27,20 @@ function sendUsername(){
     private_socket.emit('username',uname)
 }
 
-socket_messages.on('from flask',function(msg){
+function sendPrivateMessage(){
+    var recipient = document.getElementById('send_to_username').value;
+    var message = document.getElementById('private_message').value;
+    private_socket.emit('private-message',{'username':recipient , 'message' : message});
+}
+private_socket.on('new_private_message',function(msg){
     alert(msg)
-});
-
-socket.on('server orginated',function(msg){
-    alert(msg);
 })
+
+// socket_messages.on('from flask',function(msg){
+//     alert(msg)
+// });
+
+// socket.on('server orginated',function(msg){
+//     alert(msg);
+// })
+
