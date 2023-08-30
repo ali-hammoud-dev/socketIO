@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from flask_socketio import SocketIO , send , emit,join_room , leave_room
+from flask_socketio import SocketIO , send , emit,join_room , leave_room,close_room
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretkey'
@@ -59,6 +59,14 @@ def handle_leave_room(payload):
     room = payload['room']
     leave_room(room)
     emit('room_message',f'{payload["username"]} has left the room {room}',room=room)
+
+
+@app.route('/close/<room>')
+def close(room):
+    close_room(room,namespace='/private')
+    return '<h1>Room Closed! </h1>'
+
+
 
 if __name__ == '__main__':
     socketio.run(app)
