@@ -1,5 +1,5 @@
 from flask import Flask,render_template,request
-from flask_socketio import SocketIO , send , emit,join_room , leave_room,close_room
+from flask_socketio import SocketIO , send , emit,join_room , leave_room,close_room,disconnect
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secretkey'
@@ -66,7 +66,18 @@ def close(room):
     close_room(room,namespace='/private')
     return '<h1>Room Closed! </h1>'
 
+@socketio.on('connect',namespace='/private')
+def on_connect():
+    print('NEW CONNECTION ESTABLISHED!')
 
+@socketio.on('disconnect',namespace="/private")
+def on_diconnect():
+    print('CONNECTION ENDED!')
+
+
+@socketio.on('disconnect_me',namespace='/private')
+def disconnect_me():
+    disconnect()
 
 if __name__ == '__main__':
     socketio.run(app)

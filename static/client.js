@@ -54,6 +54,10 @@ function leave_room(){
     private_socket.emit('leave_the_room',{'room':room,'username':username})
 }
 
+function disconnect(){
+    private_socket.emit('disconnect_me')
+}
+
 // socket_messages.on('from flask',function(msg){
 //     alert(msg)
 // });
